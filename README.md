@@ -2,6 +2,7 @@ Personal Health Assistant
 
 A smart web application powered by Retrieval-Augmented Generation (RAG) to provide reliable, general health information safely and accurately.
 
+---
 Key Features
 
 AI-powered health question answering using advanced LLM models
@@ -18,6 +19,7 @@ Secure OAuth authentication
 
 Fully tested backend with nine successful unit tests
 
+---
 Requirements
 
 Node.js 18+
@@ -25,7 +27,7 @@ Node.js 18+
 pnpm
 
 MySQL or TiDB
-
+---
 Installation
 # Clone the repository
 git clone <repo-url>
@@ -40,6 +42,7 @@ pnpm db:push
 # Start the development server
 pnpm dev
 
+---
 Project Structure
 personal_health_assistant/
 ├── client/               # Frontend (React)
@@ -50,6 +53,7 @@ personal_health_assistant/
 ├── scripts/              # Utility scripts
 └── rag_data/             # Knowledge base files
 
+---
 Technology Stack
 
 Frontend: React 19, Tailwind CSS, shadcn/ui, tRPC
