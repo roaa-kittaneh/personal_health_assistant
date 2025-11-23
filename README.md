@@ -1,9 +1,9 @@
-Personal Health Assistant
+# Personal Health Assistant
 
 A smart web application powered by Retrieval-Augmented Generation (RAG) to provide reliable, general health information safely and accurately.
 
----
-Key Features
+
+## Key Features
 
 AI-powered health question answering using advanced LLM models
 
@@ -19,16 +19,16 @@ Secure OAuth authentication
 
 Fully tested backend with nine successful unit tests
 
----
-Requirements
+
+### Requirements
 
 Node.js 18+
 
 pnpm
 
 MySQL or TiDB
----
-Installation
+
+### Installation
 # Clone the repository
 git clone <repo-url>
 cd personal_health_assistant
@@ -42,8 +42,8 @@ pnpm db:push
 # Start the development server
 pnpm dev
 
----
-Project Structure
+
+## Project Structure
 personal_health_assistant/
 ├── client/               # Frontend (React)
 │   ├── src/
@@ -53,36 +53,34 @@ personal_health_assistant/
 ├── scripts/              # Utility scripts
 └── rag_data/             # Knowledge base files
 
----
-Technology Stack
 
-Frontend: React 19, Tailwind CSS, shadcn/ui, tRPC
-Backend: Node.js, Express.js, tRPC
-Database: MySQL/TiDB, Drizzle ORM
-AI: RAG pipeline and LLM integration
+## Technology Stack
 
-Usage Example
+### Frontend: **React 19**, **Tailwind CSS**, **shadcn/ui**, **tRPC**
+### Backend: **Node.js**, **Express.js**, **tRPC**
+### Database:** MySQL/TiDB**, **Drizzle ORM**
+### AI:** RAG pipeline and LLM integration**
+
+## Usage Example
 const result = await trpc.health.askQuestion.mutate({
   question: "What are the symptoms of iron deficiency?"
 });
 
-Testing
+##Testing
 
 The project includes nine unit tests that cover authentication, RAG question handling, history retrieval, feedback submission, and medical disclaimer enforcement.
 
-Run tests:
+## Run tests:
 
 pnpm test
 
-Medical Disclaimer
+## Medical Disclaimer
 
 This application provides general information only and is not a substitute for professional medical advice or diagnosis. For emergencies, contact official medical services immediately.
 
-License
 
-This project is licensed under the MIT License.
 
-Contributions
+## Contributions
 
 Contributions are welcome.
 Please create a new branch, make your changes, add tests, and submit a pull request.
