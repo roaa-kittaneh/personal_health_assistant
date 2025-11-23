@@ -1,236 +1,84 @@
-# 🏥 المساعد الصحي الشخصي
+Personal Health Assistant
 
-تطبيق ويب ذكي يعتمد على تقنية **RAG (Retrieval-Augmented Generation)** لتوفير معلومات صحية عامة موثوقة وآمنة.
+A smart web application powered by Retrieval-Augmented Generation (RAG) to provide reliable, general health information safely and accurately.
 
-![Health Assistant](https://img.shields.io/badge/Health-Assistant-blue)
-![React](https://img.shields.io/badge/React-19-blue)
-![Node.js](https://img.shields.io/badge/Node.js-18+-green)
-![License](https://img.shields.io/badge/License-MIT-yellow)
+Key Features
 
-## ✨ الميزات الرئيسية
+AI-powered health question answering using advanced LLM models
 
-- 🤖 **نموذج ذكي**: استخدام نماذج LLM متقدمة للإجابة على الأسئلة الصحية
-- 📚 **قاعدة معرفة موثوقة**: معلومات من مصادر طبية معروفة (MedlinePlus, PubMed)
-- 🔍 **خط أنابيب RAG**: استرجاع السياق الطبي ذي الصلة قبل توليد الإجابات
-- 💾 **سجل شخصي**: حفظ الأسئلة والإجابات السابقة
-- ⚠️ **تحذيرات طبية**: تذكيرات دائمة بأن هذا ليس بديلاً عن استشارة الطبيب
-- 🔐 **مصادقة آمنة**: نظام OAuth متكامل
-- ✅ **اختبارات شاملة**: 9 اختبارات وحدة ناجحة
+Trusted medical knowledge base sourced from MedlinePlus and PubMed
 
-## 🚀 البدء السريع
+RAG pipeline for retrieving relevant medical context
 
-### المتطلبات
+User history for storing past questions and answers
 
-- Node.js 18+
-- pnpm
-- MySQL / TiDB
+Built-in medical disclaimers to ensure safe usage
 
-### التثبيت
+Secure OAuth authentication
 
-```bash
-# 1. استنساخ المشروع
+Fully tested backend with nine successful unit tests
+
+Requirements
+
+Node.js 18+
+
+pnpm
+
+MySQL or TiDB
+
+Installation
+# Clone the repository
 git clone <repo-url>
 cd personal_health_assistant
 
-# 2. تثبيت الحزم
+# Install dependencies
 pnpm install
 
-# 3. إعداد قاعدة البيانات
+# Initialize the database
 pnpm db:push
 
-# 4. تشغيل الخادم
+# Start the development server
 pnpm dev
-```
 
-### تشغيل الاختبارات
-
-```bash
-pnpm test
-```
-
-## 📋 البنية
-
-```
+Project Structure
 personal_health_assistant/
-├── client/                 # الواجهة الأمامية (React)
+├── client/               # Frontend (React)
 │   ├── src/
-│   │   ├── pages/         # صفحات التطبيق
-│   │   ├── components/    # مكونات UI
-│   │   └── lib/           # مكتبات مساعدة
-│   └── public/            # ملفات ثابتة
-├── server/                 # الواجهة الخلفية (Express + tRPC)
-│   ├── routers.ts         # إجراءات tRPC
-│   ├── db.ts              # دوال قاعدة البيانات
-│   └── _core/             # ملفات أساسية
-├── drizzle/               # إدارة قاعدة البيانات
-│   └── schema.ts          # تعريف الجداول
-├── scripts/               # نصوص مساعدة
-│   └── prepare_rag_data.py # تحضير بيانات RAG
-└── rag_data/              # بيانات قاعدة المعرفة
-    └── knowledge_base.json
-```
+│   └── public/
+├── server/               # Backend (Express + tRPC)
+├── drizzle/              # Database schema
+├── scripts/              # Utility scripts
+└── rag_data/             # Knowledge base files
 
-## 🔧 المكدس التكنولوجي
+Technology Stack
 
-### Frontend
-- **React 19**: مكتبة واجهات المستخدم
-- **Tailwind CSS 4**: تصميم الواجهات
-- **shadcn/ui**: مكونات UI جاهزة
-- **tRPC**: اتصال آمن بالخادم
+Frontend: React 19, Tailwind CSS, shadcn/ui, tRPC
+Backend: Node.js, Express.js, tRPC
+Database: MySQL/TiDB, Drizzle ORM
+AI: RAG pipeline and LLM integration
 
-### Backend
-- **Express.js 4**: خادم الويب
-- **tRPC 11**: واجهة برمجية آمنة
-- **Node.js**: بيئة التشغيل
-
-### Database
-- **MySQL / TiDB**: قاعدة البيانات
-- **Drizzle ORM**: إدارة قاعدة البيانات
-
-### AI/ML
-- **LLM Integration**: نماذج لغة متقدمة
-- **RAG Pipeline**: استرجاع السياق وتوليد الإجابات
-- **Text Processing**: معالجة النصوص الطبية
-
-## 📊 الجداول الرئيسية
-
-### users
-```sql
-- id: مفتاح أساسي
-- openId: معرّف OAuth فريد
-- name: اسم المستخدم
-- email: البريد الإلكتروني
-- role: الدور (user/admin)
-```
-
-### knowledge_sources
-```sql
-- id: مفتاح أساسي
-- title: عنوان المصدر
-- content: محتوى النص
-- source: مصدر البيانات
-- category: الفئة الطبية
-```
-
-### qa_history
-```sql
-- id: مفتاح أساسي
-- userId: معرّف المستخدم
-- question: السؤال
-- answer: الإجابة
-- sources: المصادر المستخدمة
-```
-
-## 🧪 الاختبارات
-
-تم إنشاء 9 اختبارات شاملة:
-
-```
-✓ auth.logout (1 test)
-✓ health.askQuestion (4 tests)
-  - قبول الأسئلة الصحيحة
-  - رفض الأسئلة القصيرة
-  - رفض الأسئلة الطويلة
-  - تضمين المصادر
-✓ health.getHistory (1 test)
-✓ health.provideFeedback (2 tests)
-✓ health.askQuestion - Medical Disclaimer (1 test)
-```
-
-**النتيجة:** ✅ جميع الاختبارات نجحت
-
-## 📖 الاستخدام
-
-### طرح سؤال صحي
-
-```typescript
+Usage Example
 const result = await trpc.health.askQuestion.mutate({
-  question: "ما هي أعراض نقص الحديد؟"
+  question: "What are the symptoms of iron deficiency?"
 });
 
-// النتيجة:
-// {
-//   answer: "أعراض نقص الحديد تشمل...",
-//   sources: [
-//     { title: "نقص الحديد", source: "MedlinePlus", category: "Hematology" }
-//   ]
-// }
-```
+Testing
 
-### الحصول على السجل
+The project includes nine unit tests that cover authentication, RAG question handling, history retrieval, feedback submission, and medical disclaimer enforcement.
 
-```typescript
-const history = await trpc.health.getHistory.query();
-// قائمة بجميع الأسئلة والإجابات السابقة
-```
+Run tests:
 
-### تقديم تقييم
+pnpm test
 
-```typescript
-await trpc.health.provideFeedback.mutate({
-  qaId: 1,
-  isHelpful: "yes",
-  feedback: "الإجابة مفيدة جداً"
-});
-```
+Medical Disclaimer
 
-## ⚠️ تحذيرات طبية مهمة
+This application provides general information only and is not a substitute for professional medical advice or diagnosis. For emergencies, contact official medical services immediately.
 
-**هذا التطبيق يوفر معلومات عامة فقط ولا يعتبر:**
-- بديلاً عن استشارة الطبيب المتخصص
-- أداة تشخيصية طبية
-- نصيحة طبية شخصية
+License
 
-**في حالة الطوارئ الطبية، يرجى التواصل مع خدمات الطوارئ فوراً.**
+This project is licensed under the MIT License.
 
-## 🔐 الأمان
+Contributions
 
-- ✅ مصادقة OAuth آمنة
-- ✅ تشفير الاتصالات (HTTPS)
-- ✅ حماية البيانات الشخصية
-- ✅ التحقق من صحة المدخلات
-- ✅ معالجة الأخطاء الآمنة
-
-## 📚 المصادر المستخدمة
-
-- [MedlinePlus](https://medlineplus.gov/) - معلومات صحية موثوقة
-- [PubMed Central](https://pmc.ncbi.nlm.nih.gov/) - أدبيات طبية
-- [PubMed](https://pubmed.ncbi.nlm.nih.gov/) - استشهادات طبية
-
-## 📝 الترخيص
-
-هذا المشروع مرخص تحت MIT License - انظر ملف LICENSE للتفاصيل
-
-## 🤝 المساهمة
-
-نرحب بالمساهمات! يرجى:
-1. إنشاء فرع جديد
-2. إجراء التغييرات
-3. كتابة الاختبارات
-4. إرسال طلب دمج
-
-## 📞 الدعم
-
-للحصول على الدعم:
-- 📧 البريد الإلكتروني: support@example.com
-- 🐛 GitHub Issues: [فتح issue](https://github.com/example/issues)
-- 📖 الوثائق: [DOCUMENTATION.md](./DOCUMENTATION.md)
-
-## 🎯 الخارطة الطريقية
-
-- [ ] دعم اللغات المتعددة
-- [ ] تحسين دقة RAG
-- [ ] رسوم بيانية للصحة
-- [ ] تكامل مع أجهزة الصحة الذكية
-- [ ] نظام توصيات شخصية
-- [ ] تطبيق الهاتف المحمول
-
-## 👥 الفريق
-
-تم تطويره بواسطة **Manus AI**
-
----
-
-**آخر تحديث:** نوفمبر 2025  
-**الإصدار:** 1.0.0  
-**الحالة:** ✅ جاهز للإنتاج
+Contributions are welcome.
+Please create a new branch, make your changes, add tests, and submit a pull request.
